@@ -1,17 +1,28 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css.map' %}">
     <title>post-list page</title>
 </head>
 <body>
-<!-- for 문을 이용해 목록 보여줌 -->
-{% for post in posts %}
-<!-- Post 모델에서 정의한 content 필드 접근 -->
-{{ post.content }}
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- for 문을 이용해 목록 보여줌 -->
+            {% for post in posts %}
+            <!-- Post 모델에서 정의한 content 필드 접근 -->
+            <p>{{ post.content }}</p>
+        </div>
+    </div>
+</div>
 {% endfor %}
 </body>
 </html>
