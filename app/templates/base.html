@@ -1,0 +1,48 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css.map' %}">
+    <title>base page</title>
+
+    <!--  block으로 html 내에 들어갈 수 있는 공간을 만듦  -->
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+<div class="wrap">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="" class="nav-link">{{ user.username }}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="" class="nav-link">Login</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="" class="nav-link text-white btn btn-primary btn-sm">+ Add Post</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--  다른 텟플릿에도 가져다 쓸 수 있도록 함  -->
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

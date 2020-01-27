@@ -1,18 +1,8 @@
-{% load static %}
+<!-- base.html을 확장해 템플릿끼리 연결 -->
+{% extends 'base.html' %}
 
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css.map' %}">
-    <title>post-list page</title>
-</head>
-<body>
+<!-- base.html 파일의 block 태그와 일치 -->
+{% block content %}
 <div class="content container">
     <div class="row">
         <div class="col-md-8">
@@ -24,5 +14,4 @@
     </div>
 </div>
 {% endfor %}
-</body>
-</html>
+{% endblock %}
