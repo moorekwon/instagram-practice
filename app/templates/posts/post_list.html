@@ -20,6 +20,9 @@
                             <!-- Post 모델에서 정의한 content 필드 접근 -->
                             <p>{{ post.content }}</p>
                         </div>
+                        <div>
+                            <a href="{% url 'posts:post-ammend' pk=post.pk %}">수정</a>
+                        </div>
                     </div>
                 </div>
             </div>

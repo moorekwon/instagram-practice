@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container pt-4">
+    <h1>포스트 수정</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="content">Content</label>
+            <!-- input name="content"가 post_create 뷰의 request.POST['content']로 넘어감 -->
+            <input type="text" class="form-control" name="content" id="content" value="{{ post.content }}">
+        </div>
+        <button type="submit" class="btn btn-primary">수정</button>
+    </form>
+</div>
+{% endblock %}

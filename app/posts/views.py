@@ -31,3 +31,17 @@ def post_create(request):
     else:
         # get일 경우, 포스트 생성 페이지로 이동
         return render(request, 'posts/post_create.html')
+
+
+def post_ammend(request, pk):
+    post = Post.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        post.content = request.POST['content']
+        post.save()
+        return redirect('posts:post-list')
+    else:
+        context = {
+            'post': post
+        }
+        return render(request, 'posts/post_ammend.html', context)
