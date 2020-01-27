@@ -34,14 +34,18 @@ def post_create(request):
 
 
 def post_ammend(request, pk):
+    # 수정할 포스트 pk를 통하여 갖고 오기
     post = Post.objects.get(pk=pk)
 
     if request.method == 'POST':
+        # 수정할 때, 이전 content 불러와 input란에 보이게 하기
         post.content = request.POST['content']
         post.save()
+        # post일 경우, 포스트 수정하고 post-list 페이지로 이동
         return redirect('posts:post-list')
     else:
         context = {
             'post': post
         }
+        # get일 경우, 포스트 수정 페이지로 이동
         return render(request, 'posts/post_ammend.html', context)
