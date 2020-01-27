@@ -23,7 +23,11 @@ def post_create(request):
     if request.method == 'POST':
         author = request.user
         content = request.POST['content']
+
+        # 새 포스트 생성
         Post.objects.create(author=author, content=content)
+        # post일 경우, 포스트 생성하고 post-list 페이지로 이동
         return redirect('posts:post-list')
     else:
+        # get일 경우, 포스트 생성 페이지로 이동
         return render(request, 'posts/post_create.html')

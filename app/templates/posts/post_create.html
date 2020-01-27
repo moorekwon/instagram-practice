@@ -7,6 +7,7 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="content">Content</label>
+            <!-- input name="content"가 post_create 뷰의 request.POST['content']로 넘어감 -->
             <input type="text" class="form-control" name="content" id="content">
         </div>
         <button type="submit" class="btn btn-primary">작성</button>

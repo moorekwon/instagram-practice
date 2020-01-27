@@ -10,5 +10,4 @@ urlpatterns = [
     # post-list 뷰를 식별하는 url 이름
     path('', views.post_list, name='post-list'),
     path('create/', views.post_create, name='post-create')
-    # 정수 값을 pk 변수로 뷰로 전송
 ]
