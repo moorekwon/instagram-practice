@@ -34,7 +34,8 @@
                 </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a href="" class="nav-link text-white btn btn-primary btn-sm">+ Add Post</a>
+                    <!-- a 링크를 클릭하면 post-create 페이지로 이동 -->
+                    <a href="{% url 'posts:post-create' %}" class="nav-link text-white btn btn-primary btn-sm">+ Add Post</a>
                 </li>
             </ul>
         </div>

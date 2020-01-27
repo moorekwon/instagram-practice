@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from posts.models import Post
 
@@ -17,3 +17,13 @@ def post_list(request):
 
     # 템플릿을 사용하기 위한 context 매개변수 추가
     return render(request, 'posts/post_list.html', context)
+
+
+def post_create(request):
+    if request.method == 'POST':
+        author = request.user
+        content = request.POST['content']
+        Post.objects.create(author=author, content=content)
+        return redirect('posts:post-list')
+    else:
+        return render(request, 'posts/post_create.html')

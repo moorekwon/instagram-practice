@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container pt-4">
+    <h1>새 포스트 작성</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="content">Content</label>
+            <input type="text" class="form-control" name="content" id="content">
+        </div>
+        <button type="submit" class="btn btn-primary">작성</button>
+    </form>
+</div>
+{% endblock %}
