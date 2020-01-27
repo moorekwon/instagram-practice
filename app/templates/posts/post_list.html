@@ -8,8 +8,10 @@
     <title>post-list page</title>
 </head>
 <body>
+<!-- for 문을 이용해 목록 보여줌 -->
 {% for post in posts %}
+<!-- Post 모델에서 정의한 content 필드 접 -->
 {{ post.content }}
 {% endfor %}
 </body>
-</html>
+</html>근
