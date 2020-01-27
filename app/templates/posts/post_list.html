@@ -8,6 +8,8 @@
     <title>post-list page</title>
 </head>
 <body>
-    post list page!
+{% for post in posts %}
+{{ post.content }}
+{% endfor %}
 </body>
 </html>
