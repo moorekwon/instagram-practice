@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 
+from posts.forms import PostCreateForm
 from posts.models import Post
 
 
@@ -23,14 +24,26 @@ def post_create(request):
     if request.method == 'POST':
         author = request.user
         content = request.POST['content']
+        # 여러 개의 이미지를 받음
+        images = request.FILES.getlist('image')
 
         # 새 포스트 생성
-        Post.objects.create(author=author, content=content)
+        post = Post.objects.create(author=author, content=content)
+
+        for image in images:
+            post.postimage_set.create(image=image)
+
+        print('post.postimage_set >>> ', post.postimage_set)
         # post일 경우, 포스트 생성하고 post-list 페이지로 이동
         return redirect('posts:post-list')
     else:
         # get일 경우, 포스트 생성 페이지로 이동
-        return render(request, 'posts/post_create.html')
+        form = PostCreateForm()
+
+        context = {
+            'form': form
+        }
+        return render(request, 'posts/post_create.html', context)
 
 
 def post_ammend(request, pk):

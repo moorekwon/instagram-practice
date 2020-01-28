@@ -23,6 +23,12 @@ STATIC_URL = '/static/'
 # !!! 꼭 이름은 STATICFILES_DIRS로 줘야 하는지, 꼭 리스트로 줘야 하는지 모르겠어요
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+ROOT_DIR = os.path.dirname(BASE_DIR)
+
+# .media 폴더 생성하여 이미지 업로드
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
+MEDIA_URL = '/media/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 

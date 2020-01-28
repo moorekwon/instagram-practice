@@ -17,6 +17,14 @@
 
                         <div class="content-container">
                             <span><strong>{{ post.author }}</strong></span>
+                            <div>
+                                <!--  Post 객체의 인스턴스에서 Post를 외부 키로 연결하고 있는 PostImage 안의 image를 역참조 -->
+                                {% for post_image in post.postimage_set.all %}
+                                <!-- PostImage 객체의 인스턴스의 image 필드 값은 ImageFieldFile이라는 class -->
+                                <!-- 그 class의 프로퍼티에 url이 있음 -->
+                                <img src="{{ post_image.image.url }}" alt="">
+                                {% endfor %}
+                            </div>
                             <!-- Post 모델에서 정의한 content 필드 접근 -->
                             <p>{{ post.content }}</p>
                         </div>
