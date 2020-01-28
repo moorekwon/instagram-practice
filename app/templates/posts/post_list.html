@@ -7,7 +7,7 @@
     <div class="row">
         <!-- for 문을 이용해 목록 보여줌 -->
         {% for post in posts %}
-        <div class="col-12 col-sm-6 col-md-4">
+        <div class="col-12 col-sm-6 col-md-4 mb-2">
             <div class="card mb-2">
                 <div class="card-body">
                     <div class="btn-container">
@@ -17,7 +17,7 @@
 
                         <div class="content-container">
                             <span><strong>{{ post.author }}</strong></span>
-                            <div>
+                            <div class="img-box">
                                 <!--  Post 객체의 인스턴스에서 Post를 외부 키로 연결하고 있는 PostImage 안의 image를 역참조 -->
                                 {% for post_image in post.postimage_set.all %}
                                 <!-- PostImage 객체의 인스턴스의 image 필드 값은 ImageFieldFile이라는 class -->
