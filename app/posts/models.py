@@ -19,3 +19,12 @@ class PostImage(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     # .media/posts/images 안에 저장
     image = models.ImageField(upload_to='posts/images')
+
+
+class PostComment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+
+    class Meta:
+        ordering = ('-pk',)

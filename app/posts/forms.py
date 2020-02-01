@@ -14,3 +14,14 @@ class PostCreateForm(forms.Form):
     content = forms.CharField(
         widget=forms.Textarea()
     )
+
+
+class CommentCreateForm(forms.Form):
+    content = forms.CharField(
+        max_length=10,
+        widget=forms.Textarea()
+    )
+
+    def save(self, author, post):
+        content = self.cleaned_data['content']
+        post.postcomment_set.create(author=author, content=content)

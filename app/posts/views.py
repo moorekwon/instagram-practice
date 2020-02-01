@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from posts.forms import PostCreateForm
+from posts.forms import PostCreateForm, CommentCreateForm
 from posts.models import Post
 
 
@@ -10,10 +10,12 @@ def post_list(request):
 
     # 쿼리셋 이름으로 사용되는 posts 변수 만듦
     posts = Post.objects.all()
+    comment_form = CommentCreateForm()
 
     # posts 쿼리셋 context에 담음
     context = {
-        'posts': posts
+        'posts': posts,
+        'comment_form': comment_form
     }
 
     # 템플릿을 사용하기 위한 context 매개변수 추가
@@ -62,3 +64,13 @@ def post_ammend(request, pk):
         }
         # get일 경우, 포스트 수정 페이지로 이동
         return render(request, 'posts/post_ammend.html', context)
+
+
+def comment_create(request, pk):
+    if request.method == 'POST':
+        post = Post.objects.get(pk=pk)
+        form = CommentCreateForm(data=request.POST)
+
+        if form.is_valid():
+            form.save(post=post, author=request.user)
+        return redirect('posts:post-list')
