@@ -4,12 +4,16 @@ from posts.forms import PostCreateForm, CommentCreateForm
 from posts.models import Post
 
 
-def post_list(request):
+def post_list(request, tag=None):
+    if tag is None:
+        posts = Post.objects.order_by('-pk')
+    else:
+        posts = Post.objects.filter(tags__name__iexact=tag).order_by('-pk')
+
     # request를 넘겨받아 render 호출
     # posts/post_list.html 템플릿을 보여줌
 
     # 쿼리셋 이름으로 사용되는 posts 변수 만듦
-    posts = Post.objects.all()
     comment_form = CommentCreateForm()
 
     # posts 쿼리셋 context에 담음

@@ -17,6 +17,7 @@
 
                         <div class="content-container">
                             <span><strong>{{ post.author }}</strong></span>
+
                             <div class="img-box">
                                 <!--  Post 객체의 인스턴스에서 Post를 외부 키로 연결하고 있는 PostImage 안의 image를 역참조 -->
                                 {% for post_image in post.postimage_set.all %}
@@ -26,22 +27,28 @@
                                 {% endfor %}
                             </div>
                             <!-- Post 모델에서 정의한 content 필드 접근 -->
-                            <p>{{ post.content }}</p>
+                            <p>{{ post.content_html|safe }}</p>
                         </div>
 
-                        <div>
+                        <div class="content-container">
                             <a href="{% url 'posts:post-ammend' pk=post.pk %}">수정</a>
                         </div>
 
-                        <div>
+                        <div class="content-container">
                             <form action="{% url 'posts:comment-create' pk=post.pk %}" method="post">
                                 {% csrf_token %}
-                                {{ comment_form }}
-                                <button type="submit">작성</button>
-                                {% for comment in post.postcomment_set.all %}
-                                <p>{{ comment.content }}</p>
+                                {% for comment in comment_form %}
+                                {{ comment }}
                                 {% endfor %}
+                                <button type="submit">작성</button>
                             </form>
+                            <br>
+                        </div>
+
+                        <div class="content-container">
+                            {% for comment in post.postcomment_set.all %}
+                            <p><strong>{{ post.author }}</strong> {{ comment.content }}</p>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

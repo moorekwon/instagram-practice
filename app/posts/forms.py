@@ -12,15 +12,16 @@ class PostCreateForm(forms.Form):
 
     # views.py content = request.POST['content']의 content
     content = forms.CharField(
-        widget=forms.Textarea()
-    )
+        widget=forms.Textarea())
 
 
 class CommentCreateForm(forms.Form):
     content = forms.CharField(
         max_length=10,
-        widget=forms.Textarea()
-    )
+        widget=forms.Textarea(
+            attrs={
+                'rows': 2
+            }))
 
     def save(self, author, post):
         content = self.cleaned_data['content']
