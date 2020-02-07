@@ -17,7 +17,7 @@ class PostCreateForm(forms.Form):
 
 class CommentCreateForm(forms.Form):
     content = forms.CharField(
-        max_length=10,
+        max_length=100,
         widget=forms.Textarea(
             attrs={
                 'rows': 2
